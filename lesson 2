@@ -1,0 +1,4 @@
+n = 37
+n = n*9
+n -= 4
+print("The value is now: ", n)
