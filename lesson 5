@@ -1,0 +1,5 @@
+import math
+num = 16.72
+num = float(num)
+num2 = num*math.pi
+print("When" ,num, "is multiplied by math.pi", "the result is:", math.trunc(num2))
