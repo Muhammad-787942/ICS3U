@@ -1,0 +1,9 @@
+import math 
+num1 = 16
+num1 = int(num1)
+num2 = 2008
+num2 = int(num2)
+num3 = (int(num2)*2) +5
+print("When", num2, "is muliplied by 2 and plus 5, the result is", num3)
+num4 = (int(num3)*50)+num1
+print("When", num3, "is multiplied by 50 and add the age, the result is", num4)
