@@ -10,7 +10,7 @@ width = int(width)
 #Provides a formula for "area1" with the given inputs
 area1 = length * width
 #Prints the result of area1 with the inputted values
-print ("the area of the rectangle is: ", area1) #Prints the result of area1 with the inputted values
+print ("the area of the rectangle is: ", area1)
 
 #Allows user to input a value for "radius"
 radius = input("please input a radius for a circle here: ")
@@ -34,8 +34,9 @@ volume = math.pi * math.pow (radius2,2) *height
 #Provides formula for "surface_area" with the given inputs
 surface_area = (2 * math.pi * radius2 * height) + (2 * math.pi * math.pow (radius2,2))
 #Prints result of "surface_area" with the given inputs to the second decimal point
-print ("The surface area of a cylinder is %.2f" % surface_area) 
-print ("The volume of a cylinder is %.2f" % volume) #Prints result of "volume" with the given inputs to the second decimal point
+print ("The surface area of a cylinder is %.2f" % surface_area)
+#Prints result of "volume" with the given inputs to the second decimal point
+print ("The volume of a cylinder is %.2f" % volume) 
 
 #Gives value to the variable "g"
 g = 9.8
