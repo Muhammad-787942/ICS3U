@@ -9,7 +9,7 @@ print (multiply(c, d))
 
 #2
 def myPow(m,n):
-  return math.pow (m, n)
+  return m * m
   
 x = int(input("input a value here: "))
 y = int(input("input a value here: "))
