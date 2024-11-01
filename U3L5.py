@@ -1,5 +1,3 @@
-#1
-import math 
 def multiply(a, b):
   return a * b
 
@@ -9,7 +7,7 @@ print (multiply(c, d))
 
 #2
 def myPow(m,n):
-  return m * m
+  return m**n
   
 x = int(input("input a value here: "))
 y = int(input("input a value here: "))
