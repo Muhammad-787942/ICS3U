@@ -77,16 +77,5 @@ def main():
         # Display the best layout for the current number of photos
         print(f"The best layout for {number_of_photos} photos is {rows} x {columns} "
               f"with a perimeter of {best_perimeter}.")
-    
-    # Display summary of all entered layouts after exiting the loop
-    if layout_dimensions:
-        print("\nSummary of all results:")
-        for i in range(len(layout_dimensions)):
-            rows, columns = layout_dimensions[i]
-            perimeter = layout_perimeters[i]
-            total_photos = photo_counts[i]
-            print(f"For {total_photos} photos, the best layout is {rows} x {columns} "
-                  f"with a perimeter of {perimeter}.")
-
 # Run the program
 main()
