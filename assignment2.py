@@ -2,7 +2,7 @@ import math
 # Made by Muhammad Shees Aftab
 # School Yearbook Program
 # This program calculates the optimal layout dimensions (rows and columns) 
-# for a given number of photos to achieve the smallest perimeter, making 
+# for a given number of photos to obtain the smallest perimeter, making 
 # the arrangement as compact as possible. Users can enter multiple photo 
 # counts and view a summary of the best layouts at the end.
 # Functions:
@@ -23,7 +23,7 @@ def get_valid_input():
             return None
         
         try:
-            # Convert input to an integer and validate
+            # Convert input to an integer
             number_of_photos = int(user_input)
             if number_of_photos >= 1:
                 return number_of_photos
@@ -34,14 +34,18 @@ def get_valid_input():
             print("Invalid input. Please enter a positive integer or 'done' to exit.")
 
 def find_best_dimensions(total_photos):
-    best_perimeter = None  # Initialize the best perimeter to None for comparison
-    best_dimensions = (1, total_photos)  # Start with default layout of 1 row x total_photos columns
+    # Initialize the best perimeter to None for comparison
+    best_perimeter = None  
+    # Start with default layout of 1 row x total_photos columns
+    best_dimensions = (1, total_photos)  
     
     # Check divisors of total_photos to find possible row and column combinations
     for rows in range(1, int(math.sqrt(total_photos)) + 1):
-        if total_photos % rows == 0:  # Rows must divide total_photos evenly
+        # Rows must divide total_photos evenly
+        if total_photos % rows == 0:  
             columns = total_photos // rows
-            perimeter = 2 * (rows + columns)  # Calculate perimeter for current layout
+            # Calculate perimeter for current layout
+            perimeter = 2 * (rows + columns)  
             
             # Update the best perimeter and dimensions if this perimeter is smaller
             if best_perimeter is None or perimeter < best_perimeter:
@@ -61,8 +65,8 @@ def main():
     while True:
         # Get valid user input or None if exiting
         number_of_photos = get_valid_input()
-        
-        if number_of_photos is None:  # Exit the loop if "done" was entered
+        # Exit the loop if "done" was entered
+        if number_of_photos is None:
             break
         
         # Calculate the best layout for the current number of photos
