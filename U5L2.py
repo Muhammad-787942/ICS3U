@@ -14,7 +14,10 @@ for i in range(numColors):
     colorData = fh.readline()
     colorData.strip()
     sym, c, color = colorData.split()
+    if sym == "~":
+        sym == " "
     colorDefs[i][0] = sym
     colorDefs[i][1] = color
     colorDefs[i][1] = c
+
 print(colorData.split())
