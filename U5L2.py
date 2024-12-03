@@ -9,15 +9,14 @@ rows, cols, numColors = colorData.split()
 
 numColors=int(numColors)
 
-colorDefs = [[0] * 2] * numColors 
+colorDefs = []
 for i in range(numColors):
     colorData = fh.readline()
     colorData.strip()
-    sym, c, color = colorData.split()
-    if sym == "~":
-        sym == " "
-    colorDefs[i][0] = sym
-    colorDefs[i][1] = color
-    colorDefs[i][1] = c
+    [sym, c, color] = colorData.split()
+    if (sym == '~'):
+        sym = " "
+    colorDefs.append([sym, color])
+    print(i, sym, color)
 
-print(colorData.split())
+print(colorDefs)
