@@ -31,6 +31,24 @@
 #       image_data: List of strings representing the image.
 #       diameter: Diameter of each point (pixel).
 
+#def plotRotatedImage(t, cols, rows, color_dict, image_data, diameter, angle):
+ #  - Plots the rotated image using the turtle graphics module.
+ #   Parameters:
+ #   t: turtle.Turtle
+ #       The turtle object used for plotting.
+ #   cols: int
+ #       Number of columns (width) of the image.
+ #   rows: int
+ #       Number of rows (height) of the image.
+ #   color_dict: dict
+ #       Dictionary mapping symbols to colors.
+ #   image_data: list of str
+ #       The pixel data of the image as a list of strings.
+ #   diameter: int
+ #       Diameter of each plotted point.
+ #   angle: float
+ #       The angle to rotate the image, in degrees.
+
 filename = "smiley_emoji_mod.xpm"
 fh = open(filename, "r")
 colorData = fh.readline() # file handle must be open
