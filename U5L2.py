@@ -115,6 +115,18 @@ def plotImage(t, cols, rows, color_dict, image_data, diameter):
             color = color_dict.get(sym, "gray40")  # Get the corresponding color or default to gray40
             plotIt(t, x + x_offset, y_offset - y, diameter, color)  # Plot the point with adjusted coordinates
 
+def plotRotatedImage(t, cols, rows, color_dict, image_data, diameter, angle):
+ # Plots the rotated image using the turtle graphics module.
+ rotated_pixels = rotateImage(cols, rows, image_data, angle)
+
+    x_offset = -cols // 2  # Adjust for turtle coordinates
+    y_offset = rows // 2
+
+    for x, y, sym in rotated_pixels:
+        if 0 <= x < cols and 0 <= y < rows:  # Ensure within bounds
+            color = color_dict.get(sym, "gray40")  # Get the color or default to gray40
+            plotIt(t, x + x_offset, y_offset - y, diameter, color)
+ 
 # Main execution
 filename = input("Enter the filename (smiley_emoji_mod.xpm): ")
 bg_color = input("Enter the background color (black): ")
