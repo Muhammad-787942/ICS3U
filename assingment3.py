@@ -31,24 +31,6 @@
 #       image_data: List of strings representing the image.
 #       diameter: Diameter of each point (pixel).
 
-#def plotRotatedImage(t, cols, rows, color_dict, image_data, diameter, angle):
- #  - Plots the rotated image using the turtle graphics module.
- #   Parameters:
- #   t: turtle.Turtle
- #       The turtle object used for plotting.
- #   cols: int
- #       Number of columns (width) of the image.
- #   rows: int
- #       Number of rows (height) of the image.
- #   color_dict: dict
- #       Dictionary mapping symbols to colors.
- #   image_data: list of str
- #       The pixel data of the image as a list of strings.
- #   diameter: int
- #       Diameter of each plotted point.
- #   angle: float
- #       The angle to rotate the image, in degrees.
-
 filename = "smiley_emoji_mod.xpm"
 fh = open(filename, "r")
 colorData = fh.readline() # file handle must be open
@@ -132,18 +114,6 @@ def plotImage(t, cols, rows, color_dict, image_data, diameter):
             sym = image_data[y][x]  # Get the symbol at position (y, x)
             color = color_dict.get(sym, "gray40")  # Get the corresponding color or default to gray40
             plotIt(t, x + x_offset, y_offset - y, diameter, color)  # Plot the point with adjusted coordinates
-
-def plotRotatedImage(t, cols, rows, color_dict, image_data, diameter, angle):
- # Plots the rotated image using the turtle graphics module.
- rotated_pixels = rotateImage(cols, rows, image_data, angle)
-
-    x_offset = -cols // 2  # Adjust for turtle coordinates
-    y_offset = rows // 2
-
-    for x, y, sym in rotated_pixels:
-        if 0 <= x < cols and 0 <= y < rows:  # Ensure within bounds
-            color = color_dict.get(sym, "gray40")  # Get the color or default to gray40
-            plotIt(t, x + x_offset, y_offset - y, diameter, color)
  
 # Main execution
 filename = input("Enter the filename (smiley_emoji_mod.xpm): ")
