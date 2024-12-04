@@ -1,3 +1,36 @@
+# Muhammad Shees Aftab
+# December 3rd 2024
+# XPM File Renderer with Turtle Graphics
+#This program reads an XPM file, parses its content, and renders the image
+#using Python's `turtle` graphics module. The image is constructed point by 
+#point using the color definitions provided in the XPM file.
+
+#Functions:
+#----------
+#plotIt(T, x, y, d, color):
+#  - Plots a single point on the screen using the turtle object.
+#- Parameters: T: The turtle object. x, y: Coordinates where the point should be plotted. d: Diameter of the point. color: Color of the point.
+
+#readDataFile(filename):
+ #  - Reads and parses the XPM file.
+ #  - Extracts:
+ #      * Image dimensions (columns, rows).
+ #      * Number of colors and their definitions.
+ #      * The pixel data of the image.
+ #  - Returns:
+ #      * Number of columns and rows.
+ #      * Dictionary mapping symbols to colors.
+ #     * The image data as a list of strings.
+
+#plotImage(t, cols, rows, color_dict, image_data, diameter):
+#   - Uses the turtle object to plot the entire image.
+#  - Parameters:
+#       t: The turtle object.
+#       cols, rows: Dimensions of the image.
+#       color_dict: Dictionary mapping symbols to colors.
+#       image_data: List of strings representing the image.
+#       diameter: Diameter of each point (pixel).
+
 filename = "smiley_emoji_mod.xpm"
 fh = open(filename, "r")
 colorData = fh.readline() # file handle must be open
@@ -53,7 +86,7 @@ def readDataFile(filename):
     for i in range(numColors):
         colorData = fh.readline().strip()
         sym, c, color = colorData.split()
-        if sym == '~':
+        if sym == "~":
             sym = " "
         colorDefs[sym] = color
     
@@ -83,13 +116,13 @@ def plotImage(t, cols, rows, color_dict, image_data, diameter):
             plotIt(t, x + x_offset, y_offset - y, diameter, color)  # Plot the point with adjusted coordinates
 
 # Main execution
-filename = input("Enter the filename (e.g., smiley_emoji_mod.xpm): ")
-bg_color = input("Enter the background color (e.g., gray40): ")
-diameter = int(input("Enter the diameter of the points (e.g., 4): "))
+filename = input("Enter the filename (smiley_emoji_mod.xpm): ")
+bg_color = input("Enter the background color (black): ")
+diameter = int(input("Enter the diameter of the points (8): "))
 
 # Set up canvas size
-canvas_width = 600 #Adjust as needed
-canvas_height = 600  # Adjust as needed
+canvas_width = 500 #Adjust as needed
+canvas_height = 500  # Adjust as needed
 turtle.setup(canvas_width, canvas_height)
 
 turtle.bgcolor(bg_color)  # Set background color to user input
