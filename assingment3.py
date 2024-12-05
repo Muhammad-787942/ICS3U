@@ -38,7 +38,7 @@ colorData.strip()
 
 print(colorData)
 
-rows, cols, numColors = colorData.split()
+rows, cols, numColors, _ = colorData.split()
 
 numColors=int(numColors)
 
@@ -114,7 +114,10 @@ def plotImage(t, cols, rows, color_dict, image_data, diameter):
             sym = image_data[y][x]  # Get the symbol at position (y, x)
             color = color_dict.get(sym, "gray40")  # Get the corresponding color or default to gray40
             plotIt(t, x + x_offset, y_offset - y, diameter, color)  # Plot the point with adjusted coordinates
- 
+     if rotate == "y":
+           plotIt(t, -x - x_offset, -y_offset + y, diameter, color)  # Plot the point with adjusted coordinates
+     else:
+            plotIt(t, x + x_offset, y_offset - y, diameter, color)  # Plot the point with adjusted coordinates
 # Main execution
 filename = input("Enter the filename (rocky_bullwinkle_mod.xpm): ")
 bg_color = input("Enter the background color (black): ")
