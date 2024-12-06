@@ -116,9 +116,9 @@ def plotImage(t, cols, rows, color_dict, image_data, diameter):
             plotIt(t, x + x_offset, y_offset - y, diameter, color)  # Plot the point with adjusted coordinates
  
 # Main execution
-filename = input("Enter the filename (smiley_emoji_mod.xpm): ")
-bg_color = input("Enter the background color (black): ")
-diameter = int(input("Enter the diameter of the points (8): "))
+filename = input("Enter the filename: ")
+bg_color = input("Enter the background color: ")
+diameter = int(input("Enter the diameter of the points: "))
 
 # Set up canvas size
 canvas_width = 500 #Adjust as needed
