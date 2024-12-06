@@ -23,7 +23,7 @@
  #     * The image data as a list of strings.
 
 #plotImage(t, cols, rows, color_dict, image_data, diameter):
-#   - Uses the turtle object to plot the entire image.
+#  - Uses the turtle object to plot the entire image.
 #  - Parameters:
 #       t: The turtle object.
 #       cols, rows: Dimensions of the image.
@@ -31,17 +31,15 @@
 #       image_data: List of strings representing the image.
 #       diameter: Diameter of each point (pixel).
 
-filename = "rocky_bullwinkle_mod.xpm"
-fh = open(filename, "r")
-colorData = fh.readline() # file handle must be open
-colorData.strip() 
-
-print(colorData)
-
-rows, cols, numColors, _ = colorData.split()
-
-numColors=int(numColors)
-
+#def rotateplotImage(t, cols, rows, color_dict, image_data, diameter, rotate)
+#  - Uses the turtle object to plot the entire image rotated.
+#  - Parameters:
+#       t: The turtle object.
+#       cols, rows: Dimensions of the image.
+#       color_dict: Dictionary mapping symbols to colors.
+#       image_data: List of strings representing the image.
+#       diameter: Diameter of each point (pixel).
+#       rotate: rotate the image.
 import turtle
 
 def plotIt(T, x, y, d, color):
@@ -102,16 +100,27 @@ def plotImage(t, cols, rows, color_dict, image_data, diameter):
             sym = image_data[y][x]  # Get the symbol at position (y, x)
             for i in range(len(color_dict)):
                if sym == color_dict[i][0]:
-                    color = color_dict[i][1]
-            if rotate == 'yes':
-                plotIt(t, -x - x_offset, -y_offset + y, diameter, color)
-            else:
+                color = color_dict[i][1]
                 plotIt(t, x + x_offset, y_offset - y, diameter, color)
 
+def rotateplotImage(t, cols, rows, color_dict, image_data, diameter, rotate):
+    # Calculate the center of the canvas
+    x_offset = -cols // 2
+    y_offset = rows // 2
+
+    for y in range(len(image_data)):  # Use actual number of rows
+        for x in range(cols):
+            color = "grey40"
+            sym = image_data[y][x]  # Get the symbol at position (y, x)
+            for i in range(len(color_dict)):
+               if sym == color_dict[i][0]:
+                color = color_dict[i][1]
+                plotIt(t, -x - x_offset, -y_offset + y, diameter, color)
+
 # Main execution
-filename = input("Enter the filename (rocky_bullwinkle_mod.xpm): ")
-bg_color = input("Enter the background color (black): ")
-diameter = int(input("Enter the diameter of the points (4): "))
+filename = input("Enter the filename: ")
+bg_color = input("Enter the background color: ")
+diameter = int(input("Enter the diameter of the points: "))
 rotate = input("Would you like to rotate your image 180 degrees? (yes/no): ")
 
 
@@ -128,7 +137,12 @@ t.hideturtle()  # Hide the turtle icon
 # Read the data file and plot the image
 cols, rows, color_dict, image_data = readDataFile(filename)
 print(color_dict)
-plotImage(t, cols, rows, color_dict, image_data, diameter)
+
+if rotate == "yes":
+    rotateplotImage(t, cols, rows, color_dict, image_data, diameter, rotate)
+else:
+    plotImage(t, cols, rows, color_dict, image_data, diameter)
+
 
 # Update the screen and finish
 turtle.update()
