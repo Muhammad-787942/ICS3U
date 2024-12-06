@@ -111,7 +111,7 @@ def plotImage(t, cols, rows, color_dict, image_data, diameter):
 # Main execution
 filename = input("Enter the filename (rocky_bullwinkle_mod.xpm): ")
 bg_color = input("Enter the background color (black): ")
-diameter = int(input("Enter the diameter of the points (10): "))
+diameter = int(input("Enter the diameter of the points (4): "))
 rotate = input("Would you like to rotate your image 180 degrees? (yes/no): ")
 
 
