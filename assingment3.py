@@ -42,18 +42,6 @@ rows, cols, numColors, _ = colorData.split()
 
 numColors=int(numColors)
 
-colorDefs = []
-for i in range(numColors):
-    colorData = fh.readline()
-    colorData.strip()
-    [sym, c, color] = colorData.split()
-    if (sym == '~'):
-        sym = " "
-    colorDefs.append([sym, color])
-    print(i, sym, color)
-
-print(colorDefs)
-
 import turtle
 
 def plotIt(T, x, y, d, color):
@@ -82,16 +70,15 @@ def readDataFile(filename):
     
     cols, rows, numColors = int(cols), int(rows), int(numColors)
     
-    colorDefs = {}
+    colorDefs = []
     for i in range(numColors):
-        colorData = fh.readline().strip()
-        sym, c, color = colorData.split()
-        if sym == "~":
+        colorData = fh.readline()
+        colorData.strip()
+        [sym, c, color] = colorData.split()
+        if sym == '~':
             sym = " "
-        colorDefs[sym] = color
-    
-    print(colorDefs)
-    
+        colorDefs.append([sym, color])
+            
     # Read the image data
     image_data = []
     for _ in range(rows):
@@ -111,17 +98,22 @@ def plotImage(t, cols, rows, color_dict, image_data, diameter):
 
     for y in range(len(image_data)):  # Use actual number of rows
         for x in range(cols):
+            color = "grey40"
             sym = image_data[y][x]  # Get the symbol at position (y, x)
-            color = color_dict.get(sym, "gray40")  # Get the corresponding color or default to gray40
-            plotIt(t, x + x_offset, y_offset - y, diameter, color)  # Plot the point with adjusted coordinates
-     if rotate == "y":
-           plotIt(t, -x - x_offset, -y_offset + y, diameter, color)  # Plot the point with adjusted coordinates
-     else:
-            plotIt(t, x + x_offset, y_offset - y, diameter, color)  # Plot the point with adjusted coordinates
+            for i in range(len(color_dict)):
+               if sym == color_dict[i][0]:
+                    color = color_dict[i][1]
+            if rotate == 'yes':
+                plotIt(t, -x - x_offset, -y_offset + y, diameter, color)
+            else:
+                plotIt(t, x + x_offset, y_offset - y, diameter, color)
+
 # Main execution
 filename = input("Enter the filename (rocky_bullwinkle_mod.xpm): ")
 bg_color = input("Enter the background color (black): ")
-diameter = int(input("Enter the diameter of the points (8): "))
+diameter = int(input("Enter the diameter of the points (10): "))
+rotate = input("Would you like to rotate your image 180 degrees? (yes/no): ")
+
 
 # Set up canvas size
 canvas_width = 500 #Adjust as needed
@@ -135,6 +127,7 @@ t.hideturtle()  # Hide the turtle icon
 
 # Read the data file and plot the image
 cols, rows, color_dict, image_data = readDataFile(filename)
+print(color_dict)
 plotImage(t, cols, rows, color_dict, image_data, diameter)
 
 # Update the screen and finish
