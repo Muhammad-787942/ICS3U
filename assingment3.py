@@ -40,6 +40,19 @@
 #       image_data: List of strings representing the image.
 #       diameter: Diameter of each point (pixel).
 #       rotate: rotate the image.
+# get_valid_filename
+# Purpose: 
+#   This function prompts the user to input a valid filename. 
+#   It attempts to read the file using the `readDataFile` function.
+#   If the file is not found or contains invalid data, the user is 
+#   prompted to re-enter the filename until a valid file is provided.
+# Parameters: None
+# Returns:
+#   - filename (str): The valid filename entered by the user.
+#   - cols (int): The number of columns from the file.
+#   - rows (int): The number of rows from the file.
+#   - color_dict (list): The color definitions extracted from the file.
+#   - image_data (list): The image data (grid) read from the file.
 import turtle
 
 def plotIt(T, x, y, d, color):
@@ -58,7 +71,7 @@ def readDataFile(filename):
     colorData = fh.readline().strip()
     
     print(colorData)
-    
+       
     # Adjust to handle the possibility of four values
     values = colorData.split()
     if len(values) == 4:
@@ -118,7 +131,27 @@ def rotateplotImage(t, cols, rows, color_dict, image_data, diameter, rotate):
                 plotIt(t, -x - x_offset, -y_offset + y, diameter, color)
 
 # Main execution
-filename = input("Enter the filename: ")
+def get_valid_filename():
+    filename = input("Enter the filename: ")
+    try:
+        # Call readDataFile to read the data from the file
+        cols, rows, color_dict, image_data = readDataFile(filename)
+        
+        # Return the filename along with the data retrieved from readDataFile
+        return filename, cols, rows, color_dict, image_data
+
+    except FileNotFoundError:
+        # Handle the case when the file is not found
+        print("File '" + filename + "' not found. Please enter a correct filename.")
+        # Recurse to ask again for the correct filename
+        return get_valid_filename()
+
+    except ValueError:
+        # Handle the case when the file contains invalid data
+        print("The file '" + filename + "' contains invalid data. Please check the file and try again.")
+        # Recurse to ask again for the correct filename
+        return get_valid_filename()
+    
 bg_color = input("Enter the background color: ")
 diameter = int(input("Enter the diameter of the points: "))
 rotate = input("Would you like to rotate your image 180 degrees? (yes/no): ")
@@ -135,6 +168,7 @@ t = turtle.Turtle()
 t.hideturtle()  # Hide the turtle icon
 
 # Read the data file and plot the image
+filename, cols, rows, color_dict, image_data = get_valid_filename()
 cols, rows, color_dict, image_data = readDataFile(filename)
 print(color_dict)
 
