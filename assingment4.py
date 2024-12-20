@@ -46,20 +46,20 @@ def scanfile():
     try:
         # Open the file 'wordle.dat' for reading
         file = open('wordle.dat', 'r')
-        while True:
-            line = file.readline()
-            if not line:
-                break
+        # Read each line in the file
+        for line in file:
             # Split the line into month, day, year, and word
-            (month, day, year, word) = line.split()
+            month, day, year, word = line.split()
             # Convert the day, month, and year into a merged date integer
             date = merge(day, month, year)
             dates.append(date)
             words.append(word)
-        file.close()  # Close the file after reading
+        # Close the file after reading
+        file.close()
     except FileNotFoundError:
         # Handle case when the file is not found
         print("File Error: File Not Found")
+
 
 # Function to search for a word and return the corresponding date
 def search_by_word(word):
