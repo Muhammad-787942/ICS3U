@@ -1,8 +1,8 @@
 """
-Author : Carter Wells
-Student Number: 756118
-Revison date : 15 Jan 2025
-Program : Credit Card Report
+Author : Muhammad Shees Aftab
+Student Number: 787942
+Revison date : 17 Jan 2025
+Program : Credit Card assingment
 Description : Report of all credit cards in the customer database that have expired.
 VARIABLE DICTIONARY :
     filename: str - Name of the file
