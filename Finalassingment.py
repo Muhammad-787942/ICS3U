@@ -1,30 +1,28 @@
-"""
-Author : Muhammad Shees Aftab
-Student Number: 787942
-Revison date : 17 Jan 2025
-Program : Credit Card assingment
-Description : Report of all credit cards in the customer database that have expired.
-VARIABLE DICTIONARY :
-    filename: str - Name of the file
-    fh: file object - File handle
-    names: list - List of names (first and last)
-    cc_nums: list - List of credit card numbers
-    cc_types: list - List of credit card types
-    expiry_dates: list - List of expiry dates
-    lines: list - List of all the lines in file
-    first_line: str - First line of the file (to be removed from lines)
-    output_file: file object - File handle for the output file
-    expired_text: str - Text to display when expired
-"""
+#Author : Muhammad Shees Aftab
+#Student Number: 787942
+#Revison date : 17 Jan 2025
+#Program : Credit Card assingment
+#Description : Report of all credit cards in the customer database that have expired.
+#VARIABLE DICTIONARY :
+    #filename: str - Name of the file
+    #fh: file object - File handle
+    #names: list - List of names (first and last)
+    #cc_nums: list - List of credit card numbers
+    #cc_types: list - List of credit card types
+    #expiry_dates: list - List of expiry dates
+    #lines: list - List of all the lines in file
+    #first_line: str - First line of the file (to be removed from lines)
+    #output_file: file object - File handle for the output file
+    #expired_text: str - Text to display when expired
 
-"""
-Function to perform merge sort on two arrays.
-Parameters:
-    arr (list): Array to be sorted.
-    arr2, arr3, arr4 (list): Other arrays to be sorted.
-    l (int): Left index of the subarray.
-    r (int): Right index of the subarray.
-"""
+
+#Function to perform merge sort on two arrays.
+#Parameters:
+    #arr (list): Array to be sorted.
+    #arr2, arr3, arr4 (list): Other arrays to be sorted.
+    #l (int): Left index of the subarray.
+    #r (int): Right index of the subarray.
+
 def mergeSort(arr, arr2, arr3, arr4, l, r):
     # Check if the subarray has more than one element
     if l < r:
@@ -37,24 +35,24 @@ def mergeSort(arr, arr2, arr3, arr4, l, r):
         mergeSort(arr, arr2, arr3, arr4, m + 1, r)
         merge(arr, arr2, arr3, arr4, l, m, r)
         
-"""
-Function to merge two sorted arrays.
-Parameters:
-    arr (list): Array to be sorted.
-    arr2, arr3, arr4 (list): Other arrays to be sorted.
-    l (int): Left index of the subarray.
-    m (int): Middle index of the subarray.
-    r (int): Right index of the subarray.
-"""
+
+#Function to merge two sorted arrays.
+#Parameters:
+    #arr (list): Array to be sorted.
+    #arr2, arr3, arr4 (list): Other arrays to be sorted.
+    #l (int): Left index of the subarray.
+    #m (int): Middle index of the subarray.
+    #r (int): Right index of the subarray.
+
 def merge(arr, arr2, arr3, arr4, l, m, r):
     n1 = m - l + 1
     n2 = r - m
     # Create temp arrays
-    L = [0] * (n1)
+    L =  [0] * (n1)
     L2 = [0] * (n1)
     L3 = [0] * (n1)
     L4 = [0] * (n1)
-    R = [0] * (n2)
+    R =  [0] * (n2)
     R2 = [0] * (n2)
     R3 = [0] * (n2)
     R4 = [0] * (n2)
