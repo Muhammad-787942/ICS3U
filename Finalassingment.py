@@ -1,27 +1,23 @@
-#Author : Muhammad Shees Aftab
-#Student Number: 787942
-#Revison date : 17 Jan 2025
-#Program : Credit Card assingment
-#Description : Report of all credit cards in the customer database that have expired.
-#VARIABLE DICTIONARY :
-    #filename: str - Name of the file
-    #fh: file object - File handle
-    #names: list - List of names (first and last)
-    #cc_nums: list - List of credit card numbers
-    #cc_types: list - List of credit card types
-    #expiry_dates: list - List of expiry dates
-    #lines: list - List of all the lines in file
-    #first_line: str - First line of the file (to be removed from lines)
-    #output_file: file object - File handle for the output file
-    #expired_text: str - Text to display when expired
+# Author: Muhammad Shees Aftab
+# Student Number: 787942
+# Created Date: 17 Jan 2025
+# Program: Credit Card Assignment
+# Description: Creates a report of expired credit cards from the customer database.
 
+# VARIABLE DICTIONARY:
+# filename: str - Name of the input file containing customer data
+# fh: file object - File handle for the input file
+# names: list - List to store customer full names (first and last)
+# cc_nums: list - List to store credit card numbers
+# cc_types: list - List to store credit card types (e.g., Visa, MasterCard)
+# expiry_dates: list - List to store formatted expiry dates as integers (YYYYMM)
+# lines: list - List to store all the lines read from the input file
+# first_line: str - The header line of the input file (not used in the program)
+# output_file: file object - File handle for the output file where results are written
+# expired_text: str - Text indicating the expiry status of the credit card (EXPIRED / RENEW IMMEDIATELY)
+# formatted_cc_num: str - The credit card number with a # prefix
 
-#Function to perform merge sort on two arrays.
-#Parameters:
-    #arr (list): Array to be sorted.
-    #arr2, arr3, arr4 (list): Other arrays to be sorted.
-    #l (int): Left index of the subarray.
-    #r (int): Right index of the subarray.
+# Function to apply the merge sort algorithm to multiple lists.
 
 def mergeSort(arr, arr2, arr3, arr4, l, r):
     # Check if the subarray has more than one element
@@ -34,15 +30,7 @@ def mergeSort(arr, arr2, arr3, arr4, l, r):
         mergeSort(arr, arr2, arr3, arr4, l, m)
         mergeSort(arr, arr2, arr3, arr4, m + 1, r)
         merge(arr, arr2, arr3, arr4, l, m, r)
-        
 
-#Function to merge two sorted arrays.
-#Parameters:
-    #arr (list): Array to be sorted.
-    #arr2, arr3, arr4 (list): Other arrays to be sorted.
-    #l (int): Left index of the subarray.
-    #m (int): Middle index of the subarray.
-    #r (int): Right index of the subarray.
 
 def merge(arr, arr2, arr3, arr4, l, m, r):
     n1 = m - l + 1
@@ -102,61 +90,43 @@ def merge(arr, arr2, arr3, arr4, l, m, r):
         j += 1
         k += 1
 
-# Open the file
+# Open the input file to read the data
 filename = "data.dat"
 fh = open(filename, 'r')
 
-# Create lists for names, cc numbers, cc types, and expiry dates
+# Prepare lists to store customer details
 names = []
 cc_nums = []
 cc_types = []
 expiry_dates = []
 
-# Read all the lines from file in add data into lists
+# Read all lines from the file and process the data
 lines = fh.readlines()
-# Remove first line from the list
-first_line = lines.pop(0)
-for line in lines:
-    # Split each line into components
+for line in lines[1:]:  # Skip the header line
     given_name, surname, cc_type, cc_number, exp_mo, exp_yr = line.strip().split(',')
-    # Add first and last name together
-    name = given_name + ' ' + surname
-    # Add name to names list
-    names.append(name)
-    # Add cc_type to list
-    cc_types.append(cc_type)
-    # Add cc_number to list
-    cc_nums.append(cc_number)
-    # Adds a leading zero to single digit month
-    if len(exp_mo) == 1:
-        exp_mo = '0' + exp_mo
-    # Adds month and year together into expiry_date
-    expiry_date = exp_yr + exp_mo
-    # Add expiry_date to list in type int
-    expiry_dates.append(int(expiry_date))
+    names.append(given_name + ' ' + surname)  # Combine first and last names
+    cc_types.append(cc_type)  # Store the credit card type
+    cc_nums.append(cc_number)  # Store the credit card number
 
-# Close the file
-fh.close()
+    # Convert expiry date to a numeric format (YYYYMM)
+    expiry_date = int(exp_yr) * 100 + int(exp_mo)  # Combine year and month
+    expiry_dates.append(expiry_date)  # Store the formatted expiry date
 
-# Sort the lists using merge sort
+fh.close()  # Close the input file
+
+# Sort the data based on the expiry date
 mergeSort(expiry_dates, names, cc_nums, cc_types, 0, len(expiry_dates) - 1)
-# Open the output file
-output_file = open("output.txt","w")
-# Loop through the expiry_dates list
+
+# Create the output report in a text file
+output_file = open("output.txt", "w")
 for i in range(len(expiry_dates)):
-    # Break if the expiry date is larger than 202501, meaning it is not expiried
-    if expiry_dates[i] > 202501:
+    if expiry_dates[i] > 202501:  # Stop if the credit card is not expired
         break
-    # Set expired_text string
-    expired_text = "RENEW IMMEDIATELY"
-    # If expiry date is lower than 202501 than set string to EXPIRED
-    if expiry_dates[i] < 202501:
-        expired_text = "EXPIRED"
-    # Print the data
-    print("%-35s %-15s %-20s %-10s %-15s" % (names[i], cc_types[i], cc_nums[i], expiry_dates[i], expired_text))
-    # Write data to output file
-    output_file.write("%-35s %-15s %-20s %-10s %-15s\n" % (names[i], cc_types[i], cc_nums[i], expiry_dates[i], expired_text))
-# Close the output file
-output_file.close()
+    expired_text = "EXPIRED" if expiry_dates[i] < 202501 else "RENEW IMMEDIATELY"  # Set expiration status
+    formatted_cc_num = "#" + cc_nums[i]  # Add # before the credit card number
+    # Print the results in a formatted manner
+    print("%-20s %-20s %-20s %-20s %-100s" % (names[i], cc_types[i], formatted_cc_num, expiry_dates[i], expired_text))
+    # Write the results to the output file
+    output_file.write("%-20s %-20s %-20s %-20s %-100s\n" % (names[i], cc_types[i], formatted_cc_num, expiry_dates[i], expired_text))
 
-
+output_file.close()  # Close the output file
